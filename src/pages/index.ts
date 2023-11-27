@@ -1,1 +1,5 @@
+export * from './About'
+export * from './Home'
 export * from './LandingPage'
+export * from './Patients'
+export * from './Specialties'

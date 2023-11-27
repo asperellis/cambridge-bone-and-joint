@@ -1,1 +1,7 @@
+export * from './Button'
+export * from './Divider'
+export * from './Footer'
+export * from './Header'
 export * from './Logo'
+export * from './Section'
+export * from './Specialties'
