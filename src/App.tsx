@@ -11,10 +11,11 @@ export const App = () => {
       <SiteGlobalsProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="patients" element={<Patients />} />
-            <Route path="specialties" element={<Specialties />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="development" element={<Home />} />
+            <Route path="development/about" element={<About />} />
+            <Route path="development/patients" element={<Patients />} />
+            <Route path="development/specialties" element={<Specialties />} />
             <Route path="*" element={<LandingPage />} />
           </Routes>
         </BrowserRouter>

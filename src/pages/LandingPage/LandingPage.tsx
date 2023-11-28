@@ -13,7 +13,7 @@ export const LandingPage = () => {
       }}
     >
       <div className="text-sm bg-white rounded-full py-2 px-4 font-bold uppercase  text-brand-dark-blue">
-        Opening November 1, 2023
+        NOW OPEN!
       </div>
       <div className="text-center flex flex-col items-center">
         <Logo fill="white" className="self-center" width={250} />
@@ -26,7 +26,12 @@ export const LandingPage = () => {
             1454 Clark Street, Cambridge OH, 43725
           </address>
           <div className="text-sm sm:text-base">
-            <a href="tel:7404398886">For enquiries call: (740) 439-8886</a>
+            For enquiries call:{' '}
+            <a href="tel:7404214972" className="underline">
+              (740) 421-4972
+            </a>
+            <br />
+            or fax (740) 421-4973.
           </div>
         </div>
       </div>
