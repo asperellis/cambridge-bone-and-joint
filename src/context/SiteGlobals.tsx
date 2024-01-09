@@ -3,7 +3,7 @@ import React from 'react'
 import { Globals } from '../types'
 import { useGetPages, useGetSiteGlobals } from '../service'
 
-export const DEFAULT_GLOBALS = {
+export const DEFAULT_GLOBALS: Globals = {
   city: '',
   friday_closed: '',
   friday_open: '',
@@ -25,7 +25,10 @@ export const DEFAULT_GLOBALS = {
   wednesday_closed: '',
   wednesday_open: '',
   zip_code: '',
-  pages: {}
+  pages: {},
+  email: '',
+  mapsUrl: '',
+  fax_number: ''
 }
 
 export const SiteGlobalsContext = React.createContext<Globals | undefined>(
@@ -45,7 +48,10 @@ export const SiteGlobalsProvider = ({ children }: SiteGlobalsProviderProps) => {
   const globals: Globals = {
     ...DEFAULT_GLOBALS,
     ...siteGlobals,
-    pages
+    pages,
+    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      `${siteGlobals?.street_address}, ${siteGlobals?.city}, ${siteGlobals?.state} ${siteGlobals?.zip_code}, United States`
+    )}`
   }
 
   return (

@@ -12,10 +12,10 @@ export const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="development" element={<Home />} />
-            <Route path="development/about" element={<About />} />
-            <Route path="development/patients" element={<Patients />} />
-            <Route path="development/specialties" element={<Specialties />} />
+            <Route path="dev" element={<Home />} />
+            <Route path="dev/about" element={<About />} />
+            <Route path="dev/patients" element={<Patients />} />
+            <Route path="dev/specialties" element={<Specialties />} />
             <Route path="*" element={<LandingPage />} />
           </Routes>
         </BrowserRouter>

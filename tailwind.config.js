@@ -9,10 +9,14 @@ export default {
         'brand-light-blue': '#D7F1F4'
       },
       fontFamily: {
-        montserrat: ['"Montserrat"', 'sans-serif']
+        jesefin: ['"Josefin Sans"', 'sans-serif'],
+        varela: ["'Varela Round'", 'sans-serif']
       },
       textColor: {
         'brand-dark-blue': '#232E63'
+      },
+      borderRadius: {
+        '4xl': '2.5rem'
       }
     }
   },

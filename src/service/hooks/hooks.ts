@@ -15,7 +15,11 @@ export const useGetEmployees = () => {
   return useQuery({
     queryKey: QUERY_KEYS.employees,
     queryFn: async () => api.getEmployees(),
-    select: (data) => data.map((d) => d.acf)
+    select: (data) =>
+      data.map((d) => ({
+        ...d.acf,
+        id: d.id
+      }))
   })
 }
 
@@ -70,5 +74,13 @@ export const useGetTestimonials = () => {
     queryKey: QUERY_KEYS.testimonials,
     queryFn: async () => api.getTestimonials(),
     select: (data) => data.map((d) => d.acf)
+  })
+}
+
+export const useGetMedia = (id?: string) => {
+  return useQuery({
+    queryKey: QUERY_KEYS.media(id),
+    queryFn: async () => api.getMedia(id),
+    enabled: Boolean(id)
   })
 }

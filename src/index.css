@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero-background {
+    background: rgba(96,94,168, 0.25);
+    background: linear-gradient(0deg, rgba(96,94,168,0.25) 0%, rgba(97,199,213,0.25) 62%);
+}

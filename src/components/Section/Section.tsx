@@ -15,12 +15,12 @@ export const Section = ({
 }: SectionProps) => {
   return (
     <section className={`${className} text-center`}>
-      <h3 className="text-brand-dark-purple font-semibold text-sm uppercase mb-1">
+      <h2 className="text-brand-dark-purple font-semibold text-sm uppercase mb-1 font-varela">
         {title}
-      </h3>
-      <h4 className="mb-20 text-brand-dark-blue font-bold text-3xl">
+      </h2>
+      <h3 className="mb-20 text-brand-dark-blue font-bold text-3xl font-varela">
         {subtitle}
-      </h4>
+      </h3>
       {children}
     </section>
   )

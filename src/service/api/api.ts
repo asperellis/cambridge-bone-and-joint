@@ -3,6 +3,7 @@ import {
   Education,
   Employee,
   Facility,
+  Media,
   Page,
   SiteGlobals,
   Specialty,
@@ -21,7 +22,8 @@ export const ENDPOINTS = {
   facilities: `${BASE}/facilities`,
   page: `${BASE}/pages`,
   specialties: `${BASE}/specialties`,
-  testimonials: `${BASE}/testimonials`
+  testimonials: `${BASE}/testimonials`,
+  media: `${BASE}/media`
 }
 
 export const QUERY_KEYS = {
@@ -31,7 +33,8 @@ export const QUERY_KEYS = {
   page: (page: string) => ['page', page] as const,
   pages: ['pages'] as const,
   specialties: ['specialties'] as const,
-  testimonials: ['testimonials'] as const
+  testimonials: ['testimonials'] as const,
+  media: (id?: string) => ['media', id] as const
 }
 
 export const api = {
@@ -81,6 +84,11 @@ export const api = {
     const response = await http.get<WordpressCustomAPIResponse<Testimonial>[]>(
       url
     )
+    return response.data
+  },
+  getMedia: async (id?: string) => {
+    const url = ENDPOINTS.media + `/${id}`
+    const response = await http.get<Media>(url)
     return response.data
   }
 }

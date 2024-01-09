@@ -5,7 +5,7 @@ import { Logo } from '../../components'
 export const LandingPage = () => {
   return (
     <main
-      className="h-screen w-screen p-8 sm:p-10 flex flex-col items-center font-montserrat text-white text-center justify-between"
+      className="h-screen w-screen p-8 sm:p-10 flex flex-col items-center font-jesefin text-white text-center justify-between"
       style={{
         backgroundColor: 'rgb(35,46,99)',
         background:
