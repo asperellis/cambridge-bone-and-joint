@@ -23,7 +23,7 @@ export const ENDPOINTS = {
   page: `${BASE}/pages`,
   specialties: `${BASE}/specialties`,
   testimonials: `${BASE}/testimonials`,
-  media: `${BASE}/media`
+  media: `${BASE}/media?per_page=100`
 }
 
 export const QUERY_KEYS = {
@@ -34,7 +34,7 @@ export const QUERY_KEYS = {
   pages: ['pages'] as const,
   specialties: ['specialties'] as const,
   testimonials: ['testimonials'] as const,
-  media: (id?: string) => ['media', id] as const
+  media: ['media'] as const
 }
 
 export const api = {
@@ -86,9 +86,9 @@ export const api = {
     )
     return response.data
   },
-  getMedia: async (id?: string) => {
-    const url = ENDPOINTS.media + `/${id}`
-    const response = await http.get<Media>(url)
+  getMedia: async () => {
+    const url = ENDPOINTS.media
+    const response = await http.get<Media[]>(url)
     return response.data
   }
 }

@@ -16,7 +16,14 @@ export const Specialties = ({ className, specialties }: SpecialtiesProps) => {
     >
       <ul className="grid lg:grid-cols-3 gap-10">
         {specialties.map((specialty) => (
-          <li key={specialty.name}>{specialty.name}</li>
+          <li key={specialty.name}>
+            <h4 className="font-varela text-brand-dark-purple text-xl font-semibold mb-3">
+              {specialty.name}
+            </h4>
+            <p className="font-varela text-brand-dark-blue text-lg">
+              {specialty.description}
+            </p>
+          </li>
         ))}
       </ul>
     </Section>

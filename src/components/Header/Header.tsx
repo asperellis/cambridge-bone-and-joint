@@ -62,15 +62,15 @@ export const Header = ({
 }: HeaderProps) => {
   const showPrimaryButton = primary_button_text && primary_button_link
   const showSecondaryButton = secondary_button_text && secondary_button_link
-  const { data: imageInfo } = useGetMedia(image || '')
-
+  const { data } = useGetMedia()
+  const imageInfo = data?.get(String(image))
   return (
     <>
       <header className="bg-brand-light-blue lg:rounded-4xl p-8 sm:p-12 lg:pb-36 xl:pb-48 gap-14 lg:gap-40 lg:mx-10 lg:mt-10 xl:mx-14 xl:mt-14 flex flex-col mb-20 relative overflow-hidden">
         {image && (
           <img
             src={imageInfo?.source_url}
-            className="h-full w-full object-cover absolute left-0 top-0 opacity-20"
+            className="h-full w-full object-cover absolute left-0 top-0 opacity-20 grayscale"
           />
         )}
         <div className="absolute top-0 left-0 hero-background h-full w-full"></div>

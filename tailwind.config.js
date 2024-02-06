@@ -17,6 +17,11 @@ export default {
       },
       borderRadius: {
         '4xl': '2.5rem'
+      },
+      padding: {
+        '1/2': '50%',
+        '3/4': '75%',
+        full: '100%'
       }
     }
   },

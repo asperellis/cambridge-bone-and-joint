@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { QUERY_KEYS, api } from '../api'
-import { Page } from '../../types'
+import { Employee, Media, Page } from '../../types'
 
 export const useGetEducations = () => {
   return useQuery({
@@ -15,7 +15,7 @@ export const useGetEmployees = () => {
   return useQuery({
     queryKey: QUERY_KEYS.employees,
     queryFn: async () => api.getEmployees(),
-    select: (data) =>
+    select: (data): Employee[] =>
       data.map((d) => ({
         ...d.acf,
         id: d.id
@@ -77,10 +77,14 @@ export const useGetTestimonials = () => {
   })
 }
 
-export const useGetMedia = (id?: string) => {
+export const useGetMedia = () => {
   return useQuery({
-    queryKey: QUERY_KEYS.media(id),
-    queryFn: async () => api.getMedia(id),
-    enabled: Boolean(id)
+    queryKey: QUERY_KEYS.media,
+    queryFn: async () => api.getMedia(),
+    select: (data) =>
+      data.reduce((mediaMap, currentMedia) => {
+        mediaMap.set(String(currentMedia.id), currentMedia)
+        return mediaMap
+      }, new Map<string, Media>())
   })
 }

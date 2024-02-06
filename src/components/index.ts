@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './Divider'
+export * from './Employees'
 export * from './Footer'
 export * from './Header'
 export * from './Logo'

@@ -133,6 +133,7 @@ export interface Education {
 export interface Employee extends NameAndDescription {
   id: number
   role: string
+  image: number | null
 }
 
 export interface Specialty extends NameAndDescription {}
