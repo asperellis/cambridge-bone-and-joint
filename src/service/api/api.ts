@@ -23,7 +23,8 @@ export const ENDPOINTS = {
   page: `${BASE}/pages`,
   specialties: `${BASE}/specialties`,
   testimonials: `${BASE}/testimonials`,
-  media: `${BASE}/media?per_page=100`
+  media: `${BASE}/media`,
+  mediaAll: `${BASE}/media?per_page=100`
 }
 
 export const QUERY_KEYS = {
@@ -40,9 +41,8 @@ export const QUERY_KEYS = {
 export const api = {
   getEducations: async () => {
     const url = ENDPOINTS.education
-    const response = await http.get<WordpressCustomAPIResponse<Education>[]>(
-      url
-    )
+    const response =
+      await http.get<WordpressCustomAPIResponse<Education>[]>(url)
     return response.data
   },
   getEmployees: async () => {
@@ -67,28 +67,30 @@ export const api = {
   },
   getSiteGlobals: async () => {
     const url = `${ENDPOINTS.page}?slug=site-settings`
-    const response = await http.get<WordpressCustomAPIResponse<SiteGlobals>[]>(
-      url
-    )
+    const response =
+      await http.get<WordpressCustomAPIResponse<SiteGlobals>[]>(url)
     return response.data
   },
   getSpecialties: async () => {
     const url = ENDPOINTS.specialties
-    const response = await http.get<WordpressCustomAPIResponse<Specialty>[]>(
-      url
-    )
+    const response =
+      await http.get<WordpressCustomAPIResponse<Specialty>[]>(url)
     return response.data
   },
   getTestimonials: async () => {
     const url = ENDPOINTS.testimonials
-    const response = await http.get<WordpressCustomAPIResponse<Testimonial>[]>(
-      url
-    )
+    const response =
+      await http.get<WordpressCustomAPIResponse<Testimonial>[]>(url)
     return response.data
   },
   getMedia: async () => {
-    const url = ENDPOINTS.media
+    const url = ENDPOINTS.mediaAll
     const response = await http.get<Media[]>(url)
+    return response.data
+  },
+  getMediaById: async (id?: string | number | null) => {
+    const url = ENDPOINTS.media
+    const response = await http.get<Media>(`${url}${id ? `/${id}` : ''}`)
     return response.data
   }
 }

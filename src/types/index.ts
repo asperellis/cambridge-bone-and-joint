@@ -106,6 +106,9 @@ export interface SiteGlobals {
   email: string
   mapsUrl: string
   fax_number: string
+  announcement_title: string
+  announcement_description: string
+  announcement_image: number | string | null
 }
 
 export interface Globals extends SiteGlobals {
@@ -128,6 +131,7 @@ export interface Education {
   content: string
   link: string
   title: string
+  document: number | null | string
 }
 
 export interface Employee extends NameAndDescription {
@@ -136,4 +140,6 @@ export interface Employee extends NameAndDescription {
   image: number | null
 }
 
-export interface Specialty extends NameAndDescription {}
+export interface Specialty extends NameAndDescription {
+  image: number | null
+}

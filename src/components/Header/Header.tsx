@@ -1,11 +1,11 @@
 import React from 'react'
 import { Page } from '../../types'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from '../Button'
 import { Divider } from '../Divider'
 import { HorizontalLogo } from '../Logo'
 import { useSiteGlobals } from '../../context'
-import { useGetMedia } from '../../service'
+import { Image } from '../Image'
 
 export interface HeaderProps extends Page {}
 
@@ -60,19 +60,18 @@ export const Header = ({
   subtitle,
   title
 }: HeaderProps) => {
+  const globals = useSiteGlobals()
+  const location = useLocation()
+  const { pathname } = location
   const showPrimaryButton = primary_button_text && primary_button_link
   const showSecondaryButton = secondary_button_text && secondary_button_link
-  const { data } = useGetMedia()
-  const imageInfo = data?.get(String(image))
   return (
     <>
       <header className="bg-brand-light-blue lg:rounded-4xl p-8 sm:p-12 lg:pb-36 xl:pb-48 gap-14 lg:gap-40 lg:mx-10 lg:mt-10 xl:mx-14 xl:mt-14 flex flex-col mb-20 relative overflow-hidden">
-        {image && (
-          <img
-            src={imageInfo?.source_url}
-            className="h-full w-full object-cover absolute left-0 top-0 opacity-20 grayscale"
-          />
-        )}
+        <Image
+          imageId={image}
+          className="h-full w-full object-cover absolute left-0 top-0 opacity-20 grayscale"
+        />
         <div className="absolute top-0 left-0 hero-background h-full w-full"></div>
         <div className="flex flex-row justify-between items-center font-varela z-20">
           <Link
@@ -135,6 +134,30 @@ export const Header = ({
           </div>
         </div>{' '}
       </header>
+      {pathname === '/dev' &&
+        globals?.announcement_title &&
+        globals.announcement_description && (
+          <div className="lg:mx-10 xl:mx-14 -mt-32 bg-brand-light-blue rounded-b-4xl px-10 py-10 pt-20 mb-20">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+              {globals.announcement_image && (
+                <div className="col-span-1 bg-brand-light-blue md:flex items-center self-start justify-center rounded-2xl w-full pb-full relative overflow-hidden hidden">
+                  <Image
+                    className="h-full w-full object-cover object-top absolute left-0 top-0"
+                    imageId={globals.announcement_image}
+                  />
+                </div>
+              )}
+              <div className="lg:col-span-3 xl:col-span-4 text-left">
+                <h3 className="text-brand-dark-blue font-bold text-3xl font-varela mb-2">
+                  {globals.announcement_title}
+                </h3>
+                <p className="text-lg text-brand-dark-blue font-light font-varela">
+                  {globals.announcement_description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       {subtitle && description && (
         <div className="space-y-5 mb-16 text-center flex flex-col items-center mx-5">
           <h2 className=" text-brand-dark-purple font-semibold text-sm uppercase font-varela">

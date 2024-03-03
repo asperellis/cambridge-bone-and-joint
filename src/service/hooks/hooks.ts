@@ -88,3 +88,11 @@ export const useGetMedia = () => {
       }, new Map<string, Media>())
   })
 }
+
+export const useGetMediaById = (id?: string | number | null) => {
+  return useQuery({
+    queryKey: [...QUERY_KEYS.media, id],
+    queryFn: async () => api.getMediaById(id),
+    enabled: Boolean(id)
+  })
+}

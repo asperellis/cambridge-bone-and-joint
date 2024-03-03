@@ -1,7 +1,7 @@
 import React from 'react'
 import { Employee } from '../../types'
 import { Section } from '../Section'
-import { useGetMedia } from '../../service'
+import { Image } from '../Image'
 
 export interface EmployeesProps {
   className?: string
@@ -9,12 +9,7 @@ export interface EmployeesProps {
 }
 
 export const Employees = ({ className, employees }: EmployeesProps) => {
-  const { data: media } = useGetMedia()
   const featuredEmployee = employees?.find((employee) => employee.id === 81)
-  const featuredEmployeeImage =
-    media && featuredEmployee?.image
-      ? media.get(String(featuredEmployee.image))
-      : undefined
   const nonFeaturedEmployees = employees?.filter(
     (employee) => employee.id !== featuredEmployee?.id
   )
@@ -28,12 +23,10 @@ export const Employees = ({ className, employees }: EmployeesProps) => {
       {featuredEmployee && (
         <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 gap-10 xl:gap-20">
           <div className="col-span-2 bg-brand-light-blue flex justify-center rounded-2xl w-full pb-full mb-10 relative overflow-hidden">
-            {featuredEmployeeImage && (
-              <img
-                src={featuredEmployeeImage?.source_url}
-                className="h-full w-full object-cover object-left-top absolute left-0 top-0"
-              />
-            )}
+            <Image
+              imageId={featuredEmployee?.image}
+              className="h-full w-full object-cover object-left-top absolute left-0 top-0"
+            />
           </div>
           <div className="lg:col-span-2 xl:col-span-3 text-left">
             <h4 className="font-varela text-brand-dark-blue text-4xl font-semibold">
@@ -50,19 +43,13 @@ export const Employees = ({ className, employees }: EmployeesProps) => {
       )}
       <ul className="grid lg:grid-cols-3 gap-10 xl:gap-20 mt-10 xl:mt-20">
         {nonFeaturedEmployees.map((employee) => {
-          const employeeImage =
-            media && employee?.image
-              ? media.get(String(employee.image))
-              : undefined
           return (
             <li className="flex flex-col" key={employee.name}>
               <div className="col-span-2 bg-brand-light-blue flex items-center self-center justify-center rounded-2xl w-full pb-full lg:w-3/4 lg:pb-3/4 mb-10 relative overflow-hidden">
-                {employeeImage && (
-                  <img
-                    src={employeeImage?.source_url}
-                    className="h-full w-full object-cover object-top absolute left-0 top-0"
-                  />
-                )}
+                <Image
+                  imageId={employee?.image}
+                  className="h-full w-full object-cover object-left-top absolute left-0 top-0"
+                />
               </div>
               <h4 className="font-varela text-brand-dark-blue text-2xl font-semibold">
                 {employee.name}

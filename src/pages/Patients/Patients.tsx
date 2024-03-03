@@ -1,17 +1,17 @@
 import React from 'react'
 import { PageLayout } from '../../layouts'
 import { useSiteGlobals } from '../../context'
-import { Button, Divider, Section } from '../../components'
 import {
-  useGetEducations,
-  useGetMedia,
-  useGetTestimonials
-} from '../../service'
+  Button,
+  Divider,
+  EducationLink,
+  Image,
+  Section
+} from '../../components'
+import { useGetEducations, useGetTestimonials } from '../../service'
 
 export const Patients = () => {
   const globals = useSiteGlobals()
-  const { data: media } = useGetMedia()
-  const logo = media ? media.get(String(153)) : undefined
   const patientsPageData = globals?.pages['patients']
   const { data: educations } = useGetEducations()
   const { data: testimonials } = useGetTestimonials()
@@ -24,7 +24,7 @@ export const Patients = () => {
       <Section title="Wellness programs" subtitle="Prescribe FIT">
         <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 md:gap-10 xl:gap-20">
           <div className="col-span-2 flex flex-col items-center self-start justify-center mb-10">
-            {logo && <img src={logo.source_url} />}
+            <Image imageId={153} />
             <iframe
               width="100%"
               height="315"
@@ -97,23 +97,10 @@ export const Patients = () => {
       {educations?.length ? (
         <>
           <Section title="Education" subtitle="Stay informed">
-            <ul className="grid lg:grid-cols-3 items-center gap-10">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-10">
               {educations.map((education) => (
-                <li key={education.title}>
-                  <h4 className="font-varela text-brand-dark-purple text-xl font-semibold mb-3">
-                    {education.title}
-                  </h4>
-                  <p className="font-varela text-brand-dark-blue text-lg mb-5">
-                    {education.content}
-                  </p>
-                  <Button
-                    as="a"
-                    href={education.link}
-                    className=""
-                    variant="outline"
-                  >
-                    Learn more
-                  </Button>
+                <li key={education.document}>
+                  <EducationLink education={education} />
                 </li>
               ))}
             </ul>

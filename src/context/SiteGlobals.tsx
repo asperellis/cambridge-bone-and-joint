@@ -28,7 +28,10 @@ export const DEFAULT_GLOBALS: Globals = {
   pages: {},
   email: '',
   mapsUrl: '',
-  fax_number: ''
+  fax_number: '',
+  announcement_description: '',
+  announcement_title: '',
+  announcement_image: null
 }
 
 export const SiteGlobalsContext = React.createContext<Globals | undefined>(

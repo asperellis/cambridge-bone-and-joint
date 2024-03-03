@@ -1,32 +1,55 @@
 import React from 'react'
 import { PageLayout } from '../../layouts'
 import { useSiteGlobals } from '../../context'
-import { useGetEmployees, useGetMedia, useGetSpecialties } from '../../service'
-import { Button, Divider, Section, Specialties } from '../../components'
+import { useGetEmployees, useGetSpecialties } from '../../service'
+import { Button, Divider, Image, Section, Specialties } from '../../components'
 import { Link } from 'react-router-dom'
 
 export const Home = () => {
   const globals = useSiteGlobals()
-  const { data: media } = useGetMedia()
   const homePageData = globals?.pages['home']
   const { data: specialties } = useGetSpecialties()
+  const featuredSpecialty = specialties?.find((s) =>
+    s.name.includes('joint replacement')
+  )
   const randomSpecialties =
     specialties?.sort(() => 0.5 - Math.random()).slice(0, 3) || []
+  const featuredSpecialties = randomSpecialties.find(
+    (s) => s.name === featuredSpecialty?.name
+  )
+    ? randomSpecialties
+    : featuredSpecialty
+      ? [featuredSpecialty, ...randomSpecialties.slice(0, 2)]
+      : randomSpecialties
   const { data: employees } = useGetEmployees()
   const featuredEmployee = employees?.find((employee) => employee.id === 81)
-  const featuredEmployeeImage =
-    media && featuredEmployee?.image
-      ? media.get(String(featuredEmployee.image))
-      : undefined
+
   if (!homePageData) {
     return
   }
 
   return (
     <PageLayout {...homePageData}>
+      <Section
+        title="Cambridge Bone and Joint"
+        subtitle="Here for all of your orthopedic needs"
+        className="xl:mx-20"
+      >
+        <div className="flex flex-col items-center justify-center">
+          <iframe
+            src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100095466914961%2Fvideos%2F332596966207785%2F&show_text=false&width=560&t=0"
+            width="560"
+            height="314"
+            style={{ border: 'none', overflow: 'hidden' }}
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+      </Section>
+      <Divider />
       {specialties?.length ? (
         <div className="flex flex-col items-center">
-          <Specialties specialties={randomSpecialties} />
+          <Specialties specialties={featuredSpecialties} />
           <Link to={'/dev/specialties'} className="mt-10 mb-10">
             <Button variant="outline">Our Specialties</Button>
           </Link>
@@ -41,12 +64,10 @@ export const Home = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 xl:gap-20">
             <div className="col-span-2 bg-brand-light-blue rounded-2xl w-full pb-full mb-10 relative overflow-hidden">
-              {featuredEmployeeImage && (
-                <img
-                  src={featuredEmployeeImage?.source_url}
-                  className="h-full w-full object-cover object-left-top absolute left-0 top-0"
-                />
-              )}
+              <Image
+                className="h-full w-full object-cover object-left-top absolute left-0 top-0"
+                imageId={featuredEmployee?.image}
+              />
             </div>
             <div className="col-span-3 text-left">
               <h4 className="font-varela text-brand-dark-blue text-4xl font-semibold">
