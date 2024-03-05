@@ -25,7 +25,7 @@ export const Footer = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10">
         <Link
           className="font-semibold uppercase text-sm text-brand-dark-blue"
-          to="/dev"
+          to="/"
         >
           <Logo fill="white" className="self-center xl:mx-auto" width={200} />
         </Link>

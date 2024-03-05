@@ -30,27 +30,10 @@ export const Home = () => {
 
   return (
     <PageLayout {...homePageData}>
-      <Section
-        title="Cambridge Bone and Joint"
-        subtitle="Here for all of your orthopedic needs"
-        className="xl:mx-20"
-      >
-        <div className="flex flex-col items-center justify-center">
-          <iframe
-            src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100095466914961%2Fvideos%2F332596966207785%2F&show_text=false&width=560&t=0"
-            width="560"
-            height="314"
-            style={{ border: 'none', overflow: 'hidden' }}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </div>
-      </Section>
-      <Divider />
       {specialties?.length ? (
         <div className="flex flex-col items-center">
           <Specialties specialties={featuredSpecialties} />
-          <Link to={'/dev/specialties'} className="mt-10 mb-10">
+          <Link to={'/specialties'} className="mt-10 mb-10">
             <Button variant="outline">Our Specialties</Button>
           </Link>
         </div>
@@ -79,13 +62,38 @@ export const Home = () => {
               <p className="font-varela text-brand-dark-blue mb-10 text-lg">
                 {featuredEmployee.description}
               </p>
-              <Link to={'/dev/about'}>
+              <Link to={'/about'}>
                 <Button variant="outline">Our staff</Button>
               </Link>
             </div>
           </div>
         </Section>
       )}
+      <Divider />
+      <Section
+        title="Cambridge Bone and Joint"
+        subtitle="Here for all of your orthopedic needs"
+        className="xl:mx-20"
+      >
+        <div className="flex flex-col items-center justify-center overflow-hidden">
+          <div
+            className="relative w-full"
+            style={{
+              paddingBottom: '56.25%',
+              paddingTop: '25px',
+              height: '0'
+            }}
+          >
+            <iframe
+              src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F100095466914961%2Fvideos%2F332596966207785%2F&show_text=false&t=0"
+              className="absolute top-0 left-0 w-full h-full"
+              // style={{ border: 'none', overflow: 'hidden' }}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </Section>
     </PageLayout>
   )
 }

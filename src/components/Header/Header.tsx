@@ -20,19 +20,19 @@ const Menu = () => {
   return (
     <>
       <Link
-        to={'/dev/about'}
+        to={'/about'}
         className="font-semibold uppercase text-brand-dark-blue"
       >
         About us
       </Link>
       <Link
-        to={'/dev/patients'}
+        to={'/patients'}
         className="font-semibold uppercase text-brand-dark-blue"
       >
         For patients
       </Link>
       <Link
-        to={'/dev/specialties'}
+        to={'/specialties'}
         className="font-semibold uppercase text-brand-dark-blue"
       >
         Specialties
@@ -76,7 +76,7 @@ export const Header = ({
         <div className="flex flex-row justify-between items-center font-varela z-20">
           <Link
             className="font-semibold uppercase text-sm text-brand-dark-blue"
-            to="/dev"
+            to="/"
           >
             <HorizontalLogo fill="#232E63" className="w-36 sm:w-40 md:w-64" />
           </Link>
@@ -134,11 +134,12 @@ export const Header = ({
           </div>
         </div>{' '}
       </header>
-      {pathname === '/dev' &&
+      {pathname === '/' &&
         globals?.announcement_title &&
         globals.announcement_description && (
           <div className="lg:mx-10 xl:mx-14 -mt-32 bg-brand-light-blue rounded-b-4xl px-10 py-10 pt-20 mb-20">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+              <div className="hidden xl:block xl:col-span-1"></div>
               {globals.announcement_image && (
                 <div className="col-span-1 bg-brand-light-blue md:flex items-center self-start justify-center rounded-2xl w-full pb-full relative overflow-hidden hidden">
                   <Image
@@ -147,14 +148,15 @@ export const Header = ({
                   />
                 </div>
               )}
-              <div className="lg:col-span-3 xl:col-span-4 text-left">
+              <div className="lg:col-span-3 xl:col-span-2 text-left">
                 <h3 className="text-brand-dark-blue font-bold text-3xl font-varela mb-2">
                   {globals.announcement_title}
                 </h3>
-                <p className="text-lg text-brand-dark-blue font-light font-varela">
+                <p className="text-lg text-brand-dark-blue font-light font-varela xl:max-w-prose">
                   {globals.announcement_description}
                 </p>
               </div>
+              <div className="hidden xl:block xl:col-span-1"></div>
             </div>
           </div>
         )}
