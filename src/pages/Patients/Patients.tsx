@@ -1,13 +1,7 @@
 import React from 'react'
 import { PageLayout } from '../../layouts'
 import { useSiteGlobals } from '../../context'
-import {
-  Button,
-  Divider,
-  EducationLink,
-  Image,
-  Section
-} from '../../components'
+import { Divider, EducationLink, Section } from '../../components'
 import { useGetEducations, useGetTestimonials } from '../../service'
 
 export const Patients = () => {
@@ -21,79 +15,6 @@ export const Patients = () => {
 
   return (
     <PageLayout {...patientsPageData}>
-      <Section title="Wellness programs" subtitle="Prescribe FIT">
-        <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 md:gap-10 xl:gap-20">
-          <div className="col-span-2 flex flex-col items-center self-start justify-center mb-10">
-            <Image imageId={153} />
-            <iframe
-              width="100%"
-              height="315"
-              src="https://www.youtube.com/embed/qRX6fv489m4"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          </div>
-          <div className="lg:col-span-2 xl:col-span-3 text-left">
-            <h5 className="text-brand-dark-purple font-bold text-lg font-varela mb-5">
-              Small Lifestyle Changes Can Make a Big Impact on Your Health
-            </h5>
-            <p className="font-varela text-brand-dark-blue text-md mb-10 max-w-prose">
-              Cambridge Bone and Joint now offers a virtual lifestyle health
-              coaching called Prescribe FIT to extend our services beyond the
-              office and further our commitment to providing high-quality,
-              comprehensive orthopedic care. We believe that traditional
-              medicine—when paired with simple changes to nutrition, physical
-              activity, and lifestyle—can have a transformative impact on our
-              patients&apos; overall health.
-            </p>
-            <h5 className="text-brand-dark-purple font-bold text-lg font-varela my-5">
-              Why Prescribe FIT?
-            </h5>
-            <p className="font-varela text-brand-dark-blue text-md mb-10 max-w-prose">
-              With Prescribe FIT, our patients will be paired with a health
-              coach who will provide personalized guidance to improve their
-              health at home by focusing on the root causes of their orthopedic
-              conditions. This innovative lifestyle health coaching program
-              focuses on improving each patient&apos;s daily habits—such as
-              nutrition and physical activity—to build sustainable healthy
-              practices that will help our patients reduce pain, improve
-              mobility, decrease weight, and better prepare for and recover from
-              surgery. These lifestyle modifications are especially valuable for
-              musculoskeletal (MSK) issues, where weight loss is a leading
-              recommendation for improving chronic conditions. Eligible for
-              Insurance Coverage Prescribe FIT is also covered by insurance
-              through Medicare, Medicaid, and most commercial insurance
-              carriers. Our team can help patients confirm their benefits
-              eligibility and financial responsibility prior to enrollment.
-              Reduce Pain & Improve Mobility with Prescribe FIT Cambridge Bone
-              and Joint is committed to offering high-quality surgical and
-              non-surgical care for injuries and conditions affecting the
-              musculoskeletal system. That is why we are partnering with
-              Prescribe FIT to offer their proven at-home lifestyle coaching
-              program.
-            </p>
-            <div className="flex flex-row gap-5">
-              <Button
-                as="a"
-                href="https://pace.prescribefit.com/pace/referral/new"
-                className="flex-1 md:max-w-max"
-              >
-                ENROLL NOW
-              </Button>
-              <Button
-                as="a"
-                href="https://www.prescribefit.com/patients/"
-                className="flex-1 md:max-w-max"
-                variant="outline"
-              >
-                LEARN MORE
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
-      <Divider />
       {educations?.length ? (
         <>
           <Section title="Education" subtitle="Stay informed">
