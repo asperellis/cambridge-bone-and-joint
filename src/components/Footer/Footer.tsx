@@ -4,18 +4,34 @@ import { Logo } from '../Logo'
 import { Button } from '../Button'
 import { Link } from 'react-router-dom'
 
-const toDisplayHours = (open?: string, closed?: string) => {
+const toDisplayHours = (open?: string, closed?: string): string => {
   if (!open || !closed) {
     return 'Closed'
   }
 
-  const [openH, openM] = open.split(':')
-  const [closedH, closedM] = closed.split(':')
-  const isOpenPM = Number(openH) >= 12
-  const isClosedPM = Number(closedH) >= 12
-  return `${Number(openH) % 12}:${openM}${isOpenPM ? 'PM' : 'AM'} - ${
-    Number(closedH) % 12
-  }:${closedM}${isClosedPM ? 'PM' : 'AM'}`
+  const formatTime = (time: string): string => {
+    const parts = time.split(':')
+    if (parts.length < 2) return 'Invalid'
+
+    const hours = Number(parts[0])
+    const minutes = parts[1]
+
+    if (isNaN(hours) || hours < 0 || hours > 23) return 'Invalid'
+    if (!/^\d{2}$/.test(minutes) || Number(minutes) > 59) return 'Invalid'
+
+    const isPM = hours >= 12
+    const displayHour = hours % 12 || 12 // Fix: 0 falls back to 12
+    return `${displayHour}:${minutes}${isPM ? 'PM' : 'AM'}`
+  }
+
+  const openFormatted = formatTime(open)
+  const closedFormatted = formatTime(closed)
+
+  if (openFormatted === 'Invalid' || closedFormatted === 'Invalid') {
+    return 'Closed'
+  }
+
+  return `${openFormatted} - ${closedFormatted}`
 }
 
 export const Footer = () => {
