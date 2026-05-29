@@ -41,7 +41,7 @@
   "dependencies": {
     "@parcel/transformer-typescript-tsc": "^2.10.3",
     "@tanstack/react-query": "^5.8.4",
-    "axios": "^1.6.2",
+    "axios": "^1.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-photo-album": "^2.3.1",
